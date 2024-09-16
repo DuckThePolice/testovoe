@@ -23,7 +23,7 @@ export async function ArticleMiddleware(
     const payload = jwt.verify(token, process.env.JWT_SECRET || "")
     req.userId = (payload as { userId: number }).userId
     var article_id = req.params.id
-    if (!article_id || article_id=="notifications")
+    if (!article_id)
         return next()
 
     var article = await Article.findOne({where:{id:article_id}})
