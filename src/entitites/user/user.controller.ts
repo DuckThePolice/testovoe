@@ -5,7 +5,6 @@ import * as bcrypt from "bcrypt"
 import { UserDto } from "./dto/user.dto"
 import jwt from "jsonwebtoken"
 import Nodemailer from "nodemailer"
-import { MailtrapTransport } from "mailtrap"
 import crypto from "crypto"
 import { EmailValidator } from "./email_validator.model"
 import { ValidateEmailDto } from "./dto/validate_email.dto"
@@ -66,15 +65,17 @@ export class UserController{
                 })
             }
             
-        const transport = Nodemailer.createTransport(
-          MailtrapTransport({
-            token: mailtrapToken,
-          })
-        );
+        const transport = Nodemailer.createTransport({
+            service:'gmail',
+            auth:{
+                user:process.env.MAIL,
+                pass: process.env.MAIL_PASS
+            }
+        })
         
         const sender = {
-          address: "mailtrap@demomailtrap.com",
-          name: "Mailtrap Test",
+          address: "Test@gmail.com",
+          name: "Test",
         };
         const recipients = [
           body.email,
@@ -86,7 +87,6 @@ export class UserController{
             to: recipients,
             subject: "Регистрация аккаунта",
             text: `Вы зарегистрировали аккаунт, код подтверждения: ${secretCode}`,
-            category: "Registration",
           })
           .then(console.log, console.error);
 
