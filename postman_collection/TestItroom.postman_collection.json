@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "b40713bb-9084-4922-992a-2a3cb2d1c7ba",
+		"name": "TestItroom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36562063"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "user_registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"\",\r\n    \"password\":\"\",\r\n    \"email\": \"policetheduck@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/reg",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"reg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "email_validation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJpYXQiOjE3MjY0NzgwNTgsImV4cCI6MTcyOTA3MDA1OH0.Cz8b2HkqdBJzdmbxI-K1DGTQawfAIYQe1rPdgdaJjWA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"secret_code\":\"5791\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/validate_email",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"validate_email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authorization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjExLCJpYXQiOjE3MjY1MDYxNTYsImV4cCI6MTcyOTA5ODE1Nn0.VmtSlC7XCaLJKkbHQYRQr7T2gAMadBRPxY4luZc_HoM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"\",\r\n    \"password\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "articles",
+			"item": [
+				{
+					"name": "create_article",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcyNjQ2OTk4MSwiZXhwIjoxNzI5MDYxOTgxfQ.6lm7zGzCVS_Nv4n6UfNsHrdSTms1tf6qpxEMm8AQukk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Article",
+									"type": "text"
+								},
+								{
+									"key": "preview",
+									"type": "file",
+									"src": "/d:/Users/Admin/Downloads/10 серия Подземелье вкусностей _ Dungeon Meshi озвучка - Anime 365 - 07_40.png"
+								},
+								{
+									"key": "text",
+									"value": "abracadabra",
+									"type": "text"
+								},
+								{
+									"key": "attachment_1",
+									"type": "file",
+									"src": "/d:/Users/Admin/Downloads/1 серия Клинок, рассекающий демонов_ Тренировка столпов _ Kimetsu no Yaiba_ Hashira Geiko-hen озвучка - Anime 365 - 26_33.png"
+								},
+								{
+									"key": "attachment_2",
+									"type": "file",
+									"src": "/d:/Users/Admin/Downloads/1 серия Сага о Винланде _ Vinland Saga озвучка - Anime 365 - 08_08.png"
+								},
+								{
+									"key": "attachment_3",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_4",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_5",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_6",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_7",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_8",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "attachment_9",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "attachment_10",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/articles/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "make_article_public",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcyNjQ2OTk4MSwiZXhwIjoxNzI5MDYxOTgxfQ.6lm7zGzCVS_Nv4n6UfNsHrdSTms1tf6qpxEMm8AQukk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/articles/59",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"59"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit_article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcyNjQ2OTk4MSwiZXhwIjoxNzI5MDYxOTgxfQ.6lm7zGzCVS_Nv4n6UfNsHrdSTms1tf6qpxEMm8AQukk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Article",
+									"type": "text"
+								},
+								{
+									"key": "preview",
+									"type": "file",
+									"src": "/d:/Users/Admin/Downloads/8 серия Гинтама _ gintama tv русские субтитры - Anime 365 - 19_19.png"
+								},
+								{
+									"key": "text",
+									"value": "abracadabra",
+									"type": "text"
+								},
+								{
+									"key": "attachment_1",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_2",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_3",
+									"type": "file",
+									"src": "/d:/Users/Admin/Downloads/VID_20240606_010108_238.mp4"
+								},
+								{
+									"key": "attachment_4",
+									"type": "file",
+									"src": "/d:/Users/Admin/Downloads/4 серия Гинтама _ gintama tv русские субтитры - Anime 365 - 14_35.png"
+								},
+								{
+									"key": "attachment_5",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_6",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_7",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_8",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_9",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "attachment_10",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/articles/50",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcyNjQ2OTk4MSwiZXhwIjoxNzI5MDYxOTgxfQ.6lm7zGzCVS_Nv4n6UfNsHrdSTms1tf6qpxEMm8AQukk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/articles/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_public_articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcyNjQ2OTk4MSwiZXhwIjoxNzI5MDYxOTgxfQ.6lm7zGzCVS_Nv4n6UfNsHrdSTms1tf6qpxEMm8AQukk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/articles/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_attachments_of_article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcyNjQ2OTk4MSwiZXhwIjoxNzI5MDYxOTgxfQ.6lm7zGzCVS_Nv4n6UfNsHrdSTms1tf6qpxEMm8AQukk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/articles/50",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"50"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
