@@ -13,11 +13,18 @@ import { decode } from "jwt-js-decode";
 export class UserController {
   async registerUser(req: Request, res: Response) {
     const body = plainToClass(UserDto, req.body);
-    if (body.password.length < 4 || body.password.length > 20)
-      return res.status(400).json({
-        msg: "Ваш пароль должен содержать от 4 до 20 символов",
-      });
-    const hashPassword = await bcrypt.hash(body.password, 10);
+    let hashPassword;
+    if (!body) return res.status(400).json({ msg: "Запрос был пустым" });
+    try {
+      if (body.password.length < 4 || body.password.length > 20)
+        return res.status(400).json({
+          msg: "Ваш пароль должен содержать от 4 до 20 символов",
+        });
+      hashPassword = await bcrypt.hash(body.password, 10);
+    } catch {
+      return res.status(400).json({ msg: "Запрос был пустым" });
+    }
+
     let [user, created] = [new User(), false];
     try {
       [user, created] = await User.findOrCreate({
@@ -55,9 +62,13 @@ export class UserController {
         msg: "Ошибка при регистрации аккаунта",
       });
     }
-
+    const host = process.env.MAIL_HOST || "";
+    const port = Number(process.env.MAIL_PORT);
+    const service = process.env.MAIL_SERVICE || "";
     const transport = Nodemailer.createTransport({
-      service: "gmail",
+      host: host,
+      port: port,
+      service: service,
       auth: {
         user: process.env.MAIL,
         pass: process.env.MAIL_PASS,
@@ -83,7 +94,14 @@ export class UserController {
   }
   async login(req: Request, res: Response) {
     const body = plainToClass(UserDto, req.body);
-    let user = await User.findOne({ where: { login: body.login } });
+    let user;
+    try {
+      user = await User.findOne({ where: { login: body.login } });
+    } catch {
+      return res.status(404).json({
+        msg: "Пользователь не найден",
+      });
+    }
     if (!user) {
       return res.status(400).json({
         msg: "Неверный логин или пароль",
